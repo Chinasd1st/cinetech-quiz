@@ -40,11 +40,18 @@ pnpm build     # 静态导出至 out/
 
 ## 题库说明
 
-题库源自 CineTech Architecture 的 `quizData.ts`，本独立项目做了以下整理：
+题库源自 CineTech Architecture 的 `quizData.ts`，本独立项目做了以下整理与扩充：
 
 - 删除全部填空题（`FILL_BLANK`，6 道），消除「30 vs 三十」类输入边界问题
 - 合并重复知识点题目（T-Stop、转接环/法兰距共 3 道）
 - 修正歧义题（超广角起始焦距、500 法则缺焦距参数）
-- 难度校准（衍射极限 HARD → MEDIUM）
+- 难度校准（衍射极限 HARD → MEDIUM、五轴 Roll 轴 EASY → MEDIUM）
+- 审阅全部题目：无重复选项、无错误题目
+- 扩充 **27 道** 2024-2026 年最新机型/技术题（均已通过公开资料核实）：
+  Sony α9 III（全球快门）、α1 II（AI/C2PA）、BURANO（8.6K/16 档/双基准 ISO）、
+  FX5（内置 X-OCN RAW/三基准 ISO/5K 开门）、α7R VI（66.8MP 堆栈/Dual Gain）、
+  RX1R III（固定 35mm F2/Step Crop）、XAVC HS、产品线配对与排序
+
+当前题库共 **174 道**，覆盖 21 个知识分类。
 
 > For TGTV · 献给每一位认真对待影像的人。
