@@ -31,6 +31,7 @@ export const CATEGORY_LABELS: Record<string, string> = {
   Data: "存储备份",
   Physics: "物理基础",
   Camera: "机身操作",
+  Sony: "索尼生态",
 };
 
 export const TYPE_LABELS: Record<string, string> = {

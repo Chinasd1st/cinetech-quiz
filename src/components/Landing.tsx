@@ -5,7 +5,7 @@ import { Play, ShieldCheck, CircleDot, ListChecks, Scale, ArrowDownUp, Link2, Sl
 import { QUIZ_DATABASE } from "@/data/quizData";
 import { ConfigState } from "@/types";
 import { ApertureMark } from "./ApertureMark";
-import { countByDifficulty } from "@/utils/quiz";
+import { countByDifficulty, countByCategory } from "@/utils/quiz";
 
 interface Props {
   config: ConfigState;
@@ -27,6 +27,7 @@ export const Landing: React.FC<Props> = ({ config, setConfig, onStart, onAdmin }
   const [customCount, setCustomCount] = useState(String(config.count));
   const poolStats = useMemo(() => countByDifficulty(QUIZ_DATABASE), []);
   const total = QUIZ_DATABASE.length;
+  const categoryCount = useMemo(() => countByCategory(QUIZ_DATABASE).length, []);
 
   const handlePreset = (count: number) => {
     const valid = Math.min(count, total);
@@ -105,7 +106,7 @@ export const Landing: React.FC<Props> = ({ config, setConfig, onStart, onAdmin }
               <div className="text-[10px] text-ink-500 uppercase tracking-widest">种题型</div>
             </div>
             <div className="px-5 py-3 bg-ink-900 border border-ink-800 rounded-2xl">
-              <div className="text-2xl font-display font-bold text-ink-100">20</div>
+              <div className="text-2xl font-display font-bold text-ink-100">{categoryCount}</div>
               <div className="text-[10px] text-ink-500 uppercase tracking-widest">个知识分类</div>
             </div>
             <div className="px-5 py-3 bg-ink-900 border border-ink-800 rounded-2xl">
