@@ -1,5 +1,5 @@
 
-export type QuestionType = 'SINGLE' | 'TRUE_FALSE' | 'FILL_BLANK' | 'MULTI' | 'ORDER' | 'INTERACTIVE' | 'MATCHING';
+export type QuestionType = 'SINGLE' | 'TRUE_FALSE' | 'MULTI' | 'ORDER' | 'INTERACTIVE' | 'MATCHING';
 export type Difficulty = 'EASY' | 'MEDIUM' | 'HARD';
 
 export interface QuizQuestion {
@@ -31,9 +31,6 @@ const q = (id: number, cat: string, diff: Difficulty, ques: string, opts: string
 });
 const tf = (id: number, cat: string, diff: Difficulty, ques: string, ans: boolean, exp: string): QuizQuestion => ({
   id, category: cat, type: 'TRUE_FALSE', difficulty: diff, question: ques, options: ["正确 (True)", "错误 (False)"], correctAnswer: ans ? "正确 (True)" : "错误 (False)", explanation: exp
-});
-const fb = (id: number, cat: string, diff: Difficulty, ques: string, accepted: string[], displayAns: string, exp: string, prefix?: string, suffix?: string): QuizQuestion => ({
-  id, category: cat, type: 'FILL_BLANK', difficulty: diff, question: ques, options: [], acceptedAnswers: accepted, correctAnswer: displayAns, explanation: exp, inputPrefix: prefix, inputSuffix: suffix
 });
 const mq = (id: number, cat: string, diff: Difficulty, ques: string, opts: string[], ans: string[], exp: string): QuizQuestion => ({
   id, category: cat, type: 'MULTI', difficulty: diff, question: ques, options: opts, correctAnswer: ans, explanation: exp
@@ -185,8 +182,6 @@ export const QUIZ_DATABASE: QuizQuestion[] = [
     "前期欠曝拍摄，后期在软件提亮，画质与前期直接使用高ISO拍摄几乎一致",
     "对于 ISO 不变性传感器（如 Sony 大部分背照式），光电转换后的模拟增益在后端数字处理中做是一样的。这允许摄影师为了保护高光而故意欠曝，后期提亮暗部而不崩坏。"),
 
-  fb(23, "Sensor", "EASY", "APS-C (Sony/Nikon) 的等效系数是？", ["1.5", "1.5x"], "1.5", "Canon 为 1.6x，M43 为 2.0x。", "", "x"),
-
   q(24, "Sensor", "MEDIUM", "在RAW解码时，拜耳阵列的RGGB排列会影响图像处理流程，因为绿色像素的数量更多。这种设计主要是为了：",
     ["模拟人眼对亮度信息的敏感特性，获得更好的细节过渡", "让画面偏绿以获得更自然的色彩", "降低传感器的制造成本", "减少摩尔纹现象", "提升高光区域的动态范围", "简化镜头光学设计"],
     "模拟人眼对亮度信息的敏感特性，获得更好的细节过渡",
@@ -238,8 +233,6 @@ export const QUIZ_DATABASE: QuizQuestion[] = [
     "增大光源相对于主体的视面积",
     "光线的软硬不取决于亮度或色温，只取决于“相对面积”。加柔光箱、柔光布、打反光板，本质上都是把点光源变成巨大的面光源。"),
 
-  fb(62, "Lighting", "MEDIUM", "根据平方反比定律，光源距离增加一倍，光照强度变为原来的____。", ["4"], "1/4", "距离加倍 (2x)，光照强度变为平方的倒数(1/2² = 1/4)。", "1/", ""),
-
   q(63, "Lighting", "MEDIUM", "CRI (显色指数) 主要衡量光源的什么能力？",
     ["还原物体真实颜色的能力", "色温的准确度", "最大流明输出", "光线的柔和度", "频闪控制能力", "发光效率"],
     "还原物体真实颜色的能力",
@@ -274,8 +267,6 @@ export const QUIZ_DATABASE: QuizQuestion[] = [
     ["环境回声/混响", "不可控的风噪", "过大的底噪", "声音过干 (无混响)", "麦克风防震架", "卡农线屏蔽"],
     ["环境回声/混响", "不可控的风噪", "过大的底噪"],
     "后期加混响容易，去混响非常难且会有音质损失。前期录音越干越好。"),
-
-  fb(85, "Audio", "HARD", "根据奈奎斯特定理，要无损还原信号，采样率必须至少是最高频率的____倍。", ["2", "2倍", "两倍"], "2", "奈奎斯特采样定理规定：采样率 > 2倍信号最高频率。", "至少 ", " 倍"),
 
   // --- 6. COLOR & POST (色彩与后期) ---
   q(93, "Post", "MEDIUM", "在色彩管理中，LUT (Look Up Table) 的本质是？",
@@ -313,8 +304,6 @@ export const QUIZ_DATABASE: QuizQuestion[] = [
     ["金属表面反光", "水面反光", "玻璃反光", "树叶反光", "皮肤油光", "塑料反光"],
     "金属表面反光",
     "金属反光不是偏振光，CPL 对其无效。"),
-
-  fb(102, "Misc", "MEDIUM", "10-bit 色深能显示约____亿种颜色 (保留一位小数)。", ["10.7", "10.73"], "10.7", "2^10 = 1024 (每通道)。1024^3 ≈ 10.73 亿。", "约 ", " 亿"),
 
   mq(103, "Mech", "MEDIUM", "液压云台相比球形云台的优势在于？",
     ["运镜平滑，适合视频摇摄", "提供动态平衡", "体积更小更轻便", "锁定速度更快", "更便宜", "更适合竖拍"],
@@ -361,8 +350,6 @@ export const QUIZ_DATABASE: QuizQuestion[] = [
     "极高的高光滚落和肤色表现",
     "Alexa 的传感器动态范围和色彩映射让高光过渡非常自然，接近胶片质感。"),
 
-  fb(131, "Industry", "HARD", "标准 IMAX 胶片的宽度是____mm。", ["70", "70mm"], "70mm", "胶片宽度: 70mm (15孔)。", "", "mm"),
-
   mq(132, "Industry", "EASY", "好莱坞主流的高端数字电影摄影机品牌通常包括？",
     ["ARRI", "RED", "Panavision", "Blackmagic", "GoPro", "DJI", "Nikon", "Insta360"],
     ["ARRI", "RED", "Panavision"],
@@ -395,8 +382,6 @@ export const QUIZ_DATABASE: QuizQuestion[] = [
     ["统一不同摄影机和显示设备的色彩标准", "提高视频分辨率", "自动剪辑视频", "消除画面噪点", "压缩视频体积", "提高剪辑速度"],
     "统一不同摄影机和显示设备的色彩标准",
     "学院色彩编码系统 (Academy Color Encoding System)，旨在解决多机型素材匹配和多平台交付的标准化问题。"),
-
-  fb(146, "Physics", "EASY", "光在真空中的速度约为每秒____万公里。", ["30", "30万"], "30万", "光速 c ≈ 300,000 km/s。", "约 ", " 万公里"),
 
   oq(147, "Video", "MEDIUM", "按传感器成像面积从大到小排列：", ["IMAX 15/70 胶片", "Full Frame (全画幅)", "Super 35", "Micro 4/3"], ["IMAX 15/70 胶片", "Full Frame (全画幅)", "Super 35", "Micro 4/3"], "IMAX 胶片面积巨大，远超全画幅。Super 35 略小于全画幅 (APS-C 级别)。"),
 
